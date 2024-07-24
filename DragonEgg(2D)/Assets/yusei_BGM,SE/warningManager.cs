@@ -11,7 +11,7 @@ public class warningManager : MonoBehaviour
     {
         Warning = GameObject.Find("warning");
 
- //       Image GetImage = 
+        Image GetImage = 
 
     }
 
