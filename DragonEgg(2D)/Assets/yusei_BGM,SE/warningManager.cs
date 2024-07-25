@@ -10,30 +10,33 @@ public class warningManager : MonoBehaviour
     Image fadeImage;
     float time = 0.0f;
     float fadeSpead = 1.0f;
-    float alpha;
+    CanvasGroup Transparency;
+    bool isFadewarning = false;
 
-    GameObject cam;
+    Transform cam;
      
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Transparency = GetComponent<CanvasGroup>();
         fadeImage = GetComponent<Image>();
-        alpha = fadeImage.color.a;
-        cam = BattleCameraController.mainCamera;
+        cam = GameObject.Find("Main Camera").GetComponent<Transform>();
     }
 
     // Update is called once per frame
-    void Update()
+    void  FixedUpdate()
     {
-
-    }
-    private void FadeIn()
-    {
-        if(cam.transform.position.y > 24)
+        if (cam.transform.position.y > 24)
         {
-        //    fadeImage.color.
+            StartCoroutine(FadeIn());
+            
+            Debug.Log("test");
         }
+    }
+    IEnumerator FadeIn() // if(cam.transform.position.y > 24)‚ð–ž‚½‚µ‚Ä‚¢‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚é‘z’è
+    {
+        Transparency.alpha += 0.01f; 
+        yield return new WaitForSeconds(Time.deltaTime); 
     }
 }
